@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import {
   View,
@@ -13,6 +14,7 @@ import LinearGradient from "react-native-linear-gradient";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 import ButtonTransparent from "../components/buttons/ButtonTransparent";
+import { LOGIN } from "../constants/stackNavigatorName";
 
 import { colors, h1 } from "../styles";
 
@@ -27,6 +29,8 @@ const windowWidth = Dimensions.get("window").width;
 interface LandingPageProps {}
 
 const LandingPage: React.FC<LandingPageProps> = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -63,8 +67,17 @@ const LandingPage: React.FC<LandingPageProps> = () => {
           </View>
         </View>
         <View style={styles.authSection}>
-          <ButtonTransparent label="Continue as guest" />
-          <ButtonSecondary label="Login" />
+          <ButtonTransparent
+            label="Continue as guest"
+            style={styles.guestButton}
+          />
+          <ButtonSecondary
+            label="Login"
+            onPress={() => {
+              navigation.navigate(LOGIN);
+            }}
+            style={styles.loginButton}
+          />
           <ButtonPrimary label="Create Account" />
         </View>
       </LinearGradient>
@@ -86,7 +99,6 @@ const styles = StyleSheet.create({
   },
   slickList: {
     zIndex: -1,
-    flex: 1,
   },
   slickItem: {
     width: windowWidth,
@@ -123,6 +135,13 @@ const styles = StyleSheet.create({
   authSection: {
     paddingHorizontal: 23,
     paddingBottom: 15,
+  },
+  loginButton: {
+    marginBottom: 15,
+    marginTop: 15,
+  },
+  guestButton: {
+    marginTop: 15,
   },
 });
 
