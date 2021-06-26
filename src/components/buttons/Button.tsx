@@ -25,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
   label,
   buttonStyle,
   labelStyle,
+  style,
   ...props
 }) => {
   const btnStyle: ViewStyle = {
@@ -39,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity style={[styles.container, btnStyle]} {...props}>
+    <TouchableOpacity style={[styles.container, btnStyle, style]} {...props}>
       <Text style={[styles.label, lbStyle]}>{label}</Text>
     </TouchableOpacity>
   );
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderWidth: 1,
     borderRadius: radius.s,
-    marginTop: 15,
   },
   label: {
     ...h5,
