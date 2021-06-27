@@ -5,5 +5,11 @@ module.exports = {
     quotes: [2, "double", { avoidEscape: true }],
     semi: [2, "always"],
     "react-native/no-inline-styles": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
   },
 };

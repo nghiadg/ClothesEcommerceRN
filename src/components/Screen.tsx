@@ -1,11 +1,16 @@
 import * as React from "react";
-import { View, StyleSheet, StatusBar } from "react-native";
+import { View, StyleSheet, StatusBar, ViewProps } from "react-native";
 import { colors } from "../styles";
 
 const STATUS_BAR_HEIGHT = StatusBar.currentHeight;
 
-const Screen: React.FC = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
+interface ScreenProps extends ViewProps {}
+const Screen: React.FC<ScreenProps> = ({ children, style, ...props }) => {
+  return (
+    <View style={[styles.container, style]} {...props}>
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
