@@ -52,11 +52,12 @@ const HomePage: React.FC<HomePageProps> = () => {
             keyExtractor={(item) => item.name}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-              <CardCategory label={item.name} imgUrl={item.thumb} />
+              <CardCategory title={item.name} imgUrl={item.thumb} />
             )}
             columnWrapperStyle={styles.categoriesContent}
             numColumns={3}
             listKey="cateogries"
+            style={styles.categories}
           />
           <SlickEvent data={new Array(4).fill(dummyBanner, 0)} />
           <FlatList
@@ -79,6 +80,9 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     flex: 1,
     overflow: "visible",
+  },
+  categories: {
+    marginBottom: 20,
   },
   categoriesContent: {
     marginLeft: -11,
