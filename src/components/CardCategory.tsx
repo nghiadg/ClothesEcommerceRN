@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import {
   View,
@@ -7,18 +8,24 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { CATEGORIES } from "../constants/stackNavigatorName";
 import { colors, h5, radius } from "../styles";
 
 const windowWidth = Dimensions.get("window").width;
 
 interface CardCategoryProps {
   imgUrl: string;
-  label: string;
+  title: string;
 }
 
-const CardCategory: React.FC<CardCategoryProps> = ({ imgUrl, label }) => {
+const CardCategory: React.FC<CardCategoryProps> = ({ imgUrl, title }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate(CATEGORIES, { title });
+      }}
+    >
       <View style={styles.container}>
         <Image
           source={{
@@ -27,7 +34,7 @@ const CardCategory: React.FC<CardCategoryProps> = ({ imgUrl, label }) => {
           style={styles.img}
         />
         <View style={styles.label}>
-          <Text style={styles.labelText}>{label}</Text>
+          <Text style={styles.labelText}>{title}</Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -73,7 +73,7 @@ const SlickEvent: React.FC<SlickEventProps> = ({ data }) => {
   }
 
   return (
-    <View style={styles.slick}>
+    <View>
       <View style={styles.slickList}>
         <ScrollView
           horizontal={true}
@@ -94,16 +94,13 @@ const SlickEvent: React.FC<SlickEventProps> = ({ data }) => {
 };
 
 const styles = StyleSheet.create({
-  slick: {
-    marginTop: 20,
-  },
   slickList: {
     borderRadius: radius.s,
     overflow: "hidden",
   },
   slickItem: {
     width: windowWidth - PADDING_SCREEN,
-    height: ((windowWidth - PADDING_SCREEN) * 4) / 11, //rotate image
+    height: ((windowWidth - PADDING_SCREEN) * 118) / 327, //rotate image
     resizeMode: "cover",
   },
   dots: {
