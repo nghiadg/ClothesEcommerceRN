@@ -10,11 +10,13 @@ import {
   Dimensions,
   ImageBackground,
 } from "react-native";
+import "react-native-get-random-values";
+import { nanoid } from "nanoid";
 import LinearGradient from "react-native-linear-gradient";
 import ButtonPrimary from "../components/buttons/ButtonPrimary";
 import ButtonSecondary from "../components/buttons/ButtonSecondary";
 import ButtonTransparent from "../components/buttons/ButtonTransparent";
-import { LOGIN } from "../constants/stackNavigatorName";
+import { LOGIN, MAIN } from "../constants/stackNavigatorName";
 
 import { colors, h1 } from "../styles";
 
@@ -33,7 +35,11 @@ const LandingPage: React.FC<LandingPageProps> = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       <LinearGradient
         style={styles.bgGradient}
         locations={[0, 0.6, 1]}
@@ -48,7 +54,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
           >
             {landingImages.map((img) => (
               <ImageBackground
-                key={img}
+                key={nanoid()}
                 source={img}
                 style={styles.slickItem}
               />
@@ -60,8 +66,8 @@ const LandingPage: React.FC<LandingPageProps> = () => {
           <View style={styles.slickDesc}>
             <Text style={styles.desc}>Discover the latest wommenswear</Text>
             <View style={styles.dot}>
-              {landingImages.map((img) => (
-                <View style={styles.dotItem} key={img} />
+              {landingImages.map(() => (
+                <View style={styles.dotItem} key={nanoid()} />
               ))}
             </View>
           </View>
@@ -70,6 +76,9 @@ const LandingPage: React.FC<LandingPageProps> = () => {
           <ButtonTransparent
             label="Continue as guest"
             style={styles.guestButton}
+            onPress={() => {
+              navigation.navigate(MAIN);
+            }}
           />
           <ButtonSecondary
             label="Login"

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomePage from "../pages/HomePage";
 import CategoriesPage from "../pages/CategoriesPage";
@@ -40,6 +40,9 @@ const BottomNavigator: React.FC = () => {
         },
         tabBarLabel: () => null,
       })}
+      tabBarOptions={{
+        style: styles.tabBar,
+      }}
     >
       <Tab.Screen name={HOME} component={HomePage} />
       <Tab.Screen name={CATEGORIES} component={CategoriesPage} />
@@ -48,5 +51,12 @@ const BottomNavigator: React.FC = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  tabBar: {
+    zIndex: 3,
+    height: 60,
+  },
+});
 
 export default BottomNavigator;
