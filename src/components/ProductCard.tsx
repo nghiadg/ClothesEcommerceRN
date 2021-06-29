@@ -1,5 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import { useState } from "react";
 import {
   View,
   Text,
@@ -8,8 +8,10 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { PRODUCT_DETAIL } from "../constants/stackNavigatorName";
 import { colors, h3, paragraph, radius } from "../styles";
 import { small } from "../styles/typography";
+import FavouriteProductTouchable from "./FavouriteProductTouchable";
 const windowWidth = Dimensions.get("window").width;
 
 interface ProductCardProps {
@@ -25,43 +27,37 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   discount,
 }) => {
-  const [isFavourite, setIsFavourite] = useState<boolean>(false);
-
-  function handleFavouriteProduct() {
-    setIsFavourite((prevState) => !prevState);
-  }
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          source={{
-            uri: image,
-          }}
-          style={styles.image}
-        />
-        <View style={styles.heart}>
-          <TouchableOpacity onPress={handleFavouriteProduct}>
-            {isFavourite ? (
-              <Image
-                source={require("../assets/images/icons/ic_heart_active.png")}
-              />
-            ) : (
-              <Image source={require("../assets/images/icons/ic_heart.png")} />
-            )}
-          </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate(PRODUCT_DETAIL);
+      }}
+    >
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image
+            source={{
+              uri: image,
+            }}
+            style={styles.image}
+          />
+          <View style={styles.heart}>
+            <FavouriteProductTouchable />
+          </View>
+          <View style={styles.discount}>
+            <Text style={styles.discountText}>-{discount}%</Text>
+          </View>
         </View>
-        <View style={styles.discount}>
-          <Text style={styles.discountText}>-{discount}%</Text>
+        <View>
+          <Text style={styles.title} numberOfLines={2}>
+            {title}
+          </Text>
+          <Text style={styles.price}>${price}</Text>
         </View>
       </View>
-      <View>
-        <Text style={styles.title} numberOfLines={2}>
-          {title}
-        </Text>
-        <Text style={styles.price}>${price}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -89,13 +85,7 @@ const styles = StyleSheet.create({
     ...h3,
   },
   heart: {
-    backgroundColor: colors.white,
     position: "absolute",
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
     bottom: 10,
     right: 10,
   },

@@ -10,7 +10,7 @@ import { colors, paragraph, radius } from "../styles";
 
 interface SizeTagProps {
   disabled?: boolean;
-  style: ViewStyle;
+  style?: ViewStyle;
 }
 
 const SizeTag: React.FC<SizeTagProps> = ({ disabled, style }) => {
