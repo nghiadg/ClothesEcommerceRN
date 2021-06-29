@@ -1,19 +1,11 @@
 import "react-native-get-random-values";
 import { nanoid } from "nanoid";
 import * as React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  Dimensions,
-  FlatList,
-} from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import SlickEvent from "../components/SlickEvent";
 import ViewOverflow from "../components/ViewOverflow";
-import { colors, h2, radius } from "../styles";
-
-const windowWidth = Dimensions.get("window").width;
+import { colors } from "../styles";
+import CardSubCategory from "../components/CardSubCategory";
 
 const dummyBanner = require("../assets/images/banners/banner_04.png");
 const dummyCategories = [
@@ -49,12 +41,7 @@ const CategoriesPage: React.FC<CategoriesPageProps> = () => {
           style={styles.categoryList}
           data={dummyCategories}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.category}>
-              <ImageBackground source={item.img} style={styles.image} />
-              <Text style={styles.categoryTitle}>{item.title}</Text>
-            </View>
-          )}
+          renderItem={({ item }) => <CardSubCategory item={item} />}
         />
       </View>
     </ViewOverflow>
@@ -69,26 +56,6 @@ const styles = StyleSheet.create({
   },
   categoryList: {
     marginTop: 20,
-  },
-  category: {
-    borderRadius: radius.s,
-    overflow: "hidden",
-    height: ((windowWidth - 50) * 118) / 326,
-    justifyContent: "center",
-    marginTop: 10,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
-    position: "absolute",
-    zIndex: -1,
-    resizeMode: "cover",
-  },
-  categoryTitle: {
-    ...h2,
-    marginLeft: 20,
-    textTransform: "capitalize",
   },
 });
 

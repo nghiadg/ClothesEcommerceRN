@@ -9,6 +9,7 @@ export const fontSize = {
   h5: 16,
   paragraph: 14,
   large: 30,
+  small: 12,
 };
 
 export const fontFamily = {
@@ -43,7 +44,7 @@ export const h2: TextStyle = {
 export const h3: TextStyle = {
   ...textBase,
   fontSize: fontSize.h3,
-  fontWeight: "500",
+  fontWeight: "700",
 };
 
 export const h4: TextStyle = {
@@ -61,6 +62,7 @@ export const h5: TextStyle = {
 export const paragraph: TextStyle = {
   ...textBase,
   fontSize: fontSize.paragraph,
+  fontFamily: fontFamily.medium,
   fontWeight: "400",
 };
 
@@ -68,4 +70,10 @@ export const large: TextStyle = {
   ...textBase,
   fontSize: fontSize.large,
   fontWeight: "700",
+};
+
+export const small: TextStyle = {
+  ...textBase,
+  fontSize: fontSize.small,
+  fontWeight: "500",
 };

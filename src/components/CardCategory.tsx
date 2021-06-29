@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { CATEGORIES } from "../constants/stackNavigatorName";
+import { CATEGORY } from "../constants/stackNavigatorName";
 import { colors, h5, radius } from "../styles";
 
 const windowWidth = Dimensions.get("window").width;
@@ -23,7 +23,7 @@ const CardCategory: React.FC<CardCategoryProps> = ({ imgUrl, title }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(CATEGORIES, { title });
+        navigation.navigate(CATEGORY, { title });
       }}
     >
       <View style={styles.container}>
