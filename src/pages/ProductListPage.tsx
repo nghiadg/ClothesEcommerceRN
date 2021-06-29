@@ -2,7 +2,6 @@ import "react-native-get-random-values";
 import { nanoid } from "nanoid";
 import * as React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import Screen from "../components/Screen";
 import ProductCard from "../components/ProductCard";
 import ViewOverflow from "../components/ViewOverflow";
 import { colors } from "../styles";
@@ -23,27 +22,26 @@ interface ProductListPageProps {}
 const ProductListPage: React.FC<ProductListPageProps> = () => {
   const [isVisiableFilter] = useState(false); //TODO: set in redux. fix later
   return (
-    <Screen>
+    <View style={styles.container}>
       <ViewOverflow>
-        <View style={styles.container}>
-          <FlatList
-            data={dummyProductList}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <ProductCard
-                image={item.image}
-                title={item.title}
-                price={item.price}
-                discount={item.discount}
-              />
-            )}
-            numColumns={2}
-            columnWrapperStyle={styles.productsWrapper}
-          />
-        </View>
+        <FlatList
+          data={dummyProductList}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ProductCard
+              image={item.image}
+              title={item.title}
+              price={item.price}
+              discount={item.discount}
+            />
+          )}
+          numColumns={2}
+          columnWrapperStyle={styles.productsWrapper}
+          style={styles.productList}
+        />
       </ViewOverflow>
       <FilterProductModal visible={isVisiableFilter} />
-    </Screen>
+    </View>
   );
 };
 
@@ -55,6 +53,9 @@ const styles = StyleSheet.create({
   },
   productsWrapper: {
     justifyContent: "space-between",
+  },
+  productList: {
+    marginTop: 22,
   },
 });
 export default ProductListPage;
