@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Image, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CategoriesPage from "../pages/CategoriesPage";
 import SearchPage from "../pages/SearchPage";
 import ProfilePage from "../pages/ProfilePage";
 import {
@@ -45,7 +44,7 @@ const BottomNavigator: React.FC = () => {
       }}
     >
       <Tab.Screen name={HOME_TAB} component={HomeStack} />
-      <Tab.Screen name={CATEGORIES_TAB} component={CategoriesPage} />
+      <Tab.Screen name={CATEGORIES_TAB} component={SearchPage} />
       <Tab.Screen name={SEARCH_TAB} component={SearchPage} />
       <Tab.Screen name={PROFILE_TAB} component={ProfilePage} />
     </Tab.Navigator>
@@ -54,7 +53,6 @@ const BottomNavigator: React.FC = () => {
 
 const styles = StyleSheet.create({
   tabBar: {
-    zIndex: 3,
     height: 60,
   },
 });
