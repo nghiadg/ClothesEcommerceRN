@@ -4,11 +4,12 @@ import "react-native-get-random-values";
 import { nanoid } from "nanoid";
 import { radius } from "../styles";
 import Slick from "./Slick";
+import { Event } from "../services/eventServices";
 
 const windowWidth = Dimensions.get("window").width;
 
 interface SlickEventProps {
-  data: Array<any>;
+  data: Array<Event>;
 }
 
 const PADDING_SCREEN = 50;
@@ -18,8 +19,12 @@ const SlickEvent: React.FC<SlickEventProps> = ({ data }) => {
     <View>
       <Slick
         data={data}
-        renderItem={(img) => (
-          <Image key={nanoid()} source={img} style={styles.slickItem} />
+        renderItem={(event: Event) => (
+          <Image
+            key={nanoid()}
+            source={{ uri: event.image }}
+            style={styles.slickItem}
+          />
         )}
         marginHorizontal={25}
       />

@@ -8,28 +8,10 @@ import CardCategory from "../components/CardCategory";
 import SlickEvent from "../components/SlickEvent";
 import ViewOverflow from "../components/ViewOverflow";
 import { radius } from "../styles";
+import { useCategories } from "../hooks/data/useCategories";
+import { useHomeEvent } from "../hooks/data/useHomeEvent";
 
 const windowWidth = Dimensions.get("window").width;
-
-const dummyBanner = require("../assets/images/banners/banner_01.png");
-
-const dummyCategories = [
-  {
-    name: "Man",
-    thumb:
-      "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
-  },
-  {
-    name: "Woman",
-    thumb:
-      "https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
-  },
-  {
-    name: "Kids",
-    thumb:
-      "https://images.unsplash.com/photo-1571210862729-78a52d3779a2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-  },
-];
 
 const dummyBanners = [
   {
@@ -39,27 +21,30 @@ const dummyBanners = [
     img: require("../assets/images/banners/banner_03.png"),
   },
 ];
+
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
+  const { categoryList } = useCategories();
+  const { eventList } = useHomeEvent();
   return (
     <Screen>
       <Header />
       <ViewOverflow>
         <View style={styles.main}>
           <FlatList
-            data={dummyCategories}
-            keyExtractor={(item) => item.name}
+            data={categoryList}
+            keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-              <CardCategory title={item.name} imgUrl={item.thumb} />
+              <CardCategory title={item.name} imgUrl={item.thumbnail} />
             )}
             columnWrapperStyle={styles.categoriesContent}
             numColumns={3}
             listKey="cateogries"
             style={styles.categories}
           />
-          <SlickEvent data={new Array(4).fill(dummyBanner, 0)} />
+          <SlickEvent data={eventList} />
           <FlatList
             style={styles.banner}
             data={dummyBanners}
