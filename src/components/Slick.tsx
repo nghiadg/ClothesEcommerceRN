@@ -18,7 +18,7 @@ const windowWidth = Dimensions.get("window").width;
 
 interface SlickProps {
   data: Array<any>;
-  renderItem: (item: object, index: number) => React.ReactNode;
+  renderItem: (item: any, index?: number) => React.ReactNode;
   marginHorizontal?: number;
   containerDotsStyle?: ViewStyle;
 }
