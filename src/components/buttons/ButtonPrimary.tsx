@@ -5,14 +5,20 @@ import Button from "./Button";
 
 interface ButtonPrimaryProps extends TouchableOpacityProps {
   label: string;
+  isLoading?: boolean;
 }
 
-const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({ label, ...props }) => {
+const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
+  label,
+  isLoading,
+  ...props
+}) => {
   return (
     <Button
       bgColor={colors.primary}
       labelColor={colors.white}
       label={label}
+      isLoading={isLoading}
       {...props}
     />
   );

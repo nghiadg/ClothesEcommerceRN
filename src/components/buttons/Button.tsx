@@ -6,6 +6,7 @@ import {
   TouchableOpacityProps,
   ViewStyle,
   TextStyle,
+  ActivityIndicator,
 } from "react-native";
 import { colors, h5, radius } from "../../styles";
 
@@ -16,6 +17,7 @@ interface ButtonProps extends TouchableOpacityProps {
   labelColor?: string;
   buttonStyle?: ViewStyle;
   labelStyle?: TextStyle;
+  isLoading?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
   buttonStyle,
   labelStyle,
   style,
+  isLoading,
+  disabled,
   ...props
 }) => {
   const btnStyle: ViewStyle = {
@@ -40,8 +44,16 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <TouchableOpacity style={[styles.container, btnStyle, style]} {...props}>
-      <Text style={[styles.label, lbStyle]}>{label}</Text>
+    <TouchableOpacity
+      style={[styles.container, btnStyle, style]}
+      {...props}
+      disabled={isLoading ? isLoading : disabled}
+    >
+      {isLoading ? (
+        <ActivityIndicator color={colors.white} />
+      ) : (
+        <Text style={[styles.label, lbStyle]}>{label}</Text>
+      )}
     </TouchableOpacity>
   );
 };
@@ -50,9 +62,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 14,
     borderWidth: 1,
     borderRadius: radius.s,
+    height: 48,
   },
   label: {
     ...h5,
