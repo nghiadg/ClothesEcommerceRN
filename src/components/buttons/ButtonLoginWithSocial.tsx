@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.s,
     alignItems: "center",
     justifyContent: "center",
-    flexGrow: 1,
   },
   provider: {
     flexDirection: "row",
