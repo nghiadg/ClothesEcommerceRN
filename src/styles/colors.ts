@@ -12,4 +12,5 @@ export const colors = {
   gray700: "#eee",
   google: "#F44336",
   facebook: "#2096F3",
+  red: "#F44336",
 };

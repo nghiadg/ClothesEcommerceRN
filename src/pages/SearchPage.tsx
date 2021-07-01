@@ -1,14 +1,17 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Screen from "../components/Screen";
+import { useAppSelector } from "../global-stores/hooks";
 import { h5, paragraph } from "../styles";
 interface SearchPageProps {}
 
 const SearchPage: React.FC<SearchPageProps> = () => {
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <Screen>
       <View style={styles.container}>
         <Text style={{ ...paragraph }}>Opps! I will code screen soon!</Text>
+        <Text style={{ ...paragraph }}>I'm {user.name}</Text>
         <View style={styles.follow}>
           <Text style={{ ...paragraph }}>Follow me on github: </Text>
           <Text style={{ ...h5 }}>https://github.com/nghiadg</Text>
@@ -23,10 +26,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
+    paddingHorizontal: 25,
   },
   follow: {
     flexDirection: "row",
     justifyContent: "center",
+    flexWrap: "wrap",
   },
 });
 
